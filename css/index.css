@@ -1,0 +1,124 @@
+* {
+  /* 页面初始化 清除元素的内外边距 */
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /* 弹性布局 让元素在页面中水平+垂直剧中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 让页面占浏览器的可视区高度 */
+  height: 100vh;
+  background-color: #00034b;
+}
+
+.container .ghost {
+  position: relative;
+  width: 150px;
+  height: 225px;
+  /* 圆角属性 左上角和右上角为圆角 */
+  border-radius: 75px 75px 0 0;
+  background-color: white;
+  /* 盒子阴影 inset是内阴影 啥都不加就是默认值(outset外阴影) */
+  box-shadow: -17px 0 0 #dbdbdb inset, 0 0 50px #5939db;
+  /* 幽灵的动画效果 */
+  animation: ghost 2s infinite;
+}
+
+/* 眼睛 star */
+.container .ghost .ghostEyes {
+  /* 弹性布局 */
+  display: flex;
+  /* 让元素平均分配宽度 */
+  justify-content: space-around;
+  width: 90px;
+  padding-top: 70px;
+  margin: 0 auto;
+}
+.container .ghost .ghostEyes::before,
+.container .ghost .ghostEyes::after {
+  /* 利用伪元素做出幽灵的卡姿兰大眼睛 */
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #00034b;
+}
+/* 眼睛 end*/
+
+/* 腮红 star */
+.container .ghost .ghostDimples {
+  /* 逻辑跟眼睛一样 */
+  display: flex;
+  justify-content: space-around;
+  width: 130px;
+  padding-top: 15px;
+  margin: 0 auto;
+}
+.container .ghost .ghostDimples::before,
+.container .ghost .ghostDimples::after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ffbeff;
+}
+/* 腮红 end */
+
+/* 脚 star */
+.container .ghost .ghostFeet {
+  /* 让四只脚水平排列 */
+  display: flex;
+  position: absolute;
+  width: 100%;
+  bottom: -13px;
+}
+.container .ghost .ghostFeet .ghostFoot {
+  width: 25%;
+  height: 26px;
+  border-radius: 50%;
+  background-color: white;
+}
+/* 设置最后一个脚 让他跟身体阴影一样 */
+.container .ghost .ghostFeet .ghostFoot:last-child {
+  /* 利用背景色渐变实现 to right 从左到右 */
+  background-image: linear-gradient(to right, #fff 55%, #dbdbdb 45%);
+}
+/* 脚 end */
+
+/* 底部阴影 star */
+.container .shadow {
+  width: 150px;
+  height: 40px;
+  margin-top: 50px;
+  border-radius: 50%;
+  background-color: #000232;
+  /* 阴影的动画 名称 时长 infinite是无限循环 */
+  animation: shadow 2s infinite;
+}
+/* 底部阴影 end */
+
+/* 漂浮动画效果 */
+@keyframes ghost {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    /* 2D位移 -15px 向上走 */
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes shadow {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    /* 缩放 0.9 比初始化样式小一点点 */
+    transform: scale(0.9);
+  }
+}
